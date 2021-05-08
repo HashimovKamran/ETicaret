@@ -13,8 +13,8 @@ public class AuthManager implements AuthService {
 
 	@Override
 	public boolean validate(User user) {
-		boolean result = BusinessRules.Run(checkFirstNameAndLastName(user), checkEMailAndPassword(user)
-				/*checkEMail(user), checkStrengthPassword(user)*/);
+		boolean result = BusinessRules.Run(checkFirstNameAndLastName(user), checkEMailAndPassword(user),
+				checkEMail(user), checkStrengthPassword(user));
 		return result;
 	}
 
@@ -34,9 +34,9 @@ public class AuthManager implements AuthService {
 		return true;
 	}
 
-	//private boolean checkEMail(User user) {
-		//return VALID_EMAIL_ADDRESS_REGEX.matcher(user.geteMail()).find();
-	//}
+	private boolean checkEMail(User user) {
+		return VALID_EMAIL_ADDRESS_REGEX.matcher(user.geteMail()).find();
+	}
 
 	private boolean checkStrengthPassword(User user) {
 		int passwordScore = 0;
